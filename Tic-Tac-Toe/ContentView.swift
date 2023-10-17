@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     let columns: [GridItem] =  [GridItem(.flexible()),
                                 GridItem(.flexible()),
                                 GridItem(.flexible()),]
     @State private var movimentos: [Mover?] = Array(repeating: nil, count: 9)
     @State private var gameDesabilitado = false
+    @State private var alertItem: AlertItem?
         
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 Spacer()
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: columns, spacing: 5) {
                     ForEach(0..<9) { i in
                         ZStack {
                             Circle()
@@ -41,12 +43,12 @@ struct ContentView: View {
                             // verifcar condicao de vitoria
                             
                             if checarCondicaoVitoria(for: .humano, in: movimentos) {
-                                print("huamano vence")
+                                alertItem = AlertContext.vitoriaHumano
                                 return
                             }
                             // empate
                             if checarEmpate(in: movimentos) {
-                                print("empate")
+                                alertItem = AlertContext.empate
                                 return
                             }
                             
@@ -58,7 +60,7 @@ struct ContentView: View {
                                 gameDesabilitado = false
                                 
                                 if checarCondicaoVitoria(for: .computador, in: movimentos) {
-                                    print("computador vence")
+                                    alertItem = AlertContext.vitoriaComputador
                                     return
                                 }
                                 
@@ -75,6 +77,12 @@ struct ContentView: View {
             }
             .disabled(gameDesabilitado)
             .padding()
+            .alert(item: $alertItem,content: { alertItem in
+                Alert(title: alertItem.titulo,
+                      message: alertItem.mensagem,
+                      dismissButton: .default(alertItem.buttonTitulo,action: { resetJogo() }))
+                
+            })
             
         }
     }
@@ -106,6 +114,11 @@ struct ContentView: View {
     }
     func checarEmpate (in movimentacao: [Mover?]) -> Bool {
         return movimentacao.compactMap { $0 }.count == 9
+    }
+    
+    func resetJogo() {
+        movimentos = Array(repeating: nil, count: 9)
+        
     }
     
 }
