@@ -16,16 +16,16 @@ struct AlertItem: Identifiable {
 
 
 struct AlertContext {
-  static let vitoriaHumano = AlertItem(titulo: Text("Você Venceu!"),
-                                  mensagem: Text("Você é melhor que a IA!"),
-                                  buttonTitulo: Text("Isso ai"))
+  static let vitoriaHumano = AlertItem(titulo: Text("Você Venceu"),
+                                  mensagem: Text("Você é o melhor!🥳"),
+                                  buttonTitulo: Text("Isso ai!Jogue de novo"))
     
    static let vitoriaComputador = AlertItem(titulo: Text("Você perdeu!"),
-                                  mensagem: Text("Esse programa é uma super IA!😎"),
+                                  mensagem: Text("Esse programa é uma super maquina!😎"),
                                   buttonTitulo: Text("Revanche"))
     
   static  let empate = AlertItem(titulo: Text("Empate!"),
-                                  mensagem: Text("Fique pronto para a proxima batalha!😎"),
+                                  mensagem: Text("Fique pronto para a proxima batalha!😉"),
                                   buttonTitulo: Text("Tente Novamente"))
     
     
