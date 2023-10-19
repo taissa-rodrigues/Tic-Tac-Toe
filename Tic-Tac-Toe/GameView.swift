@@ -16,7 +16,9 @@ struct GameView: View {
         
         GeometryReader { geometry in
             VStack {
+                Spacer()
                 Text("Tic Tac Toe")
+                    .font(.title3)
                     
                 Spacer()
                 LazyVGrid(columns: ViewModel.columns, spacing: 5) {
