@@ -12,20 +12,21 @@ struct GameView: View {
     @StateObject private var ViewModel = GameViewModel()
     
     var body: some View {
+
         
         
         GeometryReader { geometry in
             VStack {
                 Spacer()
                 Text("Tic Tac Toe")
-                    .font(.title3)
-                    
+                    .font(.largeTitle)
+                    .bold()
                 Spacer()
                 LazyVGrid(columns: ViewModel.columns, spacing: 5) {
                     ForEach(0..<9) { i in
                         ZStack {
                             Circle()
-                                .foregroundColor(.pink).opacity(0.5)
+                                .foregroundColor(.pink).opacity(0.8)
                                 .frame(width: geometry.size.width/3 - 15,
                                        height: geometry.size.width/3-15)
                             Image(systemName: ViewModel.movimentos[i]?.indicador ?? "")
