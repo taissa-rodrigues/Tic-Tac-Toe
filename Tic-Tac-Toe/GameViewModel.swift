@@ -24,7 +24,7 @@ final class GameViewModel: ObservableObject {
 
         
         
-        // verifcar condicao de vitoria
+        // verifcar condicao de vitoria    
         
         if checarCondicaoVitoria(for: .humano, in: movimentos) {
             alertItem = AlertContext.vitoriaHumano
